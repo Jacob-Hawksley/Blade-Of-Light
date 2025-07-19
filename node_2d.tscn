@@ -1,10 +1,24 @@
-[gd_scene load_steps=12 format=3 uid="uid://bvt7cpokp8n8x"]
+[gd_scene load_steps=23 format=3 uid="uid://bvt7cpokp8n8x"]
 
 [ext_resource type="Script" path="res://character_body_2d.gd" id="1_42e66"]
 [ext_resource type="Texture2D" uid="uid://dnye7xix4plop" path="res://Floor.png" id="1_bh2ed"]
 [ext_resource type="Texture2D" uid="uid://dgtckvfw2o7mi" path="res://Idle-Sprite.png" id="2_hs4i7"]
 [ext_resource type="Texture2D" uid="uid://blt052cugnv2h" path="res://Moving.png" id="4_3j8yj"]
 [ext_resource type="Texture2D" uid="uid://dlhf28evjd2fb" path="res://Platform.png" id="5_v0qa2"]
+[ext_resource type="Texture2D" uid="uid://cscrvqtaa0kpd" path="res://hp0.png" id="6_ac1a7"]
+[ext_resource type="Texture2D" uid="uid://cb04xyd7iy1d" path="res://Bridge.png" id="6_fbxw5"]
+[ext_resource type="Texture2D" uid="uid://b3h48oftisjnf" path="res://hp5.png" id="6_wnmoj"]
+[ext_resource type="Texture2D" uid="uid://ctkpwowvyrdrb" path="res://hp1.png" id="7_c1gty"]
+[ext_resource type="Texture2D" uid="uid://dx3poqd0isotf" path="res://Brick-Wall.png" id="7_na3yk"]
+[ext_resource type="Texture2D" uid="uid://dj6ixbj20vme2" path="res://hp2.png" id="8_hp0eo"]
+[ext_resource type="Texture2D" uid="uid://bqgett8pj2p2m" path="res://hp3.png" id="9_l41mc"]
+[ext_resource type="Texture2D" uid="uid://dhbadn5ea3qkt" path="res://hp4.png" id="10_vepni"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ui8w"]
+size = Vector2(302, 650)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3nlv3"]
+size = Vector2(266, 650.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1qv7n"]
 size = Vector2(254.8, 33.1)
@@ -32,21 +46,103 @@ animations = [{
 radius = 4.5
 height = 21.5
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ui8w"]
-size = Vector2(302, 650)
+[sub_resource type="GDScript" id="GDScript_i4ewv"]
+script/source = "extends Sprite2D
+@onready var _AnimatedSprite2D = $AnimatedSprite2D
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3nlv3"]
-size = Vector2(266, 650.5)
+var hp = 5
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	
+	_AnimatedSprite2D.play(str(hp))
+"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4taom"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_ac1a7")
+}],
+"loop": true,
+"name": &"0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_c1gty")
+}],
+"loop": true,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_hp0eo")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_l41mc")
+}],
+"loop": true,
+"name": &"3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_vepni")
+}],
+"loop": true,
+"name": &"4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_wnmoj")
+}],
+"loop": true,
+"name": &"5",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_smfaj"]
 size = Vector2(30, 17.3333)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4wqqe"]
+size = Vector2(256, 18.3682)
+
 [node name="Node2D" type="Node2D"]
 position = Vector2(540, 298)
 
+[node name="Wall" type="Sprite2D" parent="."]
+position = Vector2(-687, 66.5)
+scale = Vector2(1.16797, 3.41146)
+texture = ExtResource("7_na3yk")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Wall"]
+position = Vector2(589.485, -7.97539)
+scale = Vector2(0.856187, 0.295385)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall/StaticBody2D"]
+position = Vector2(-691.5, 24.5191)
+shape = SubResource("RectangleShape2D_7ui8w")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Wall/StaticBody2D"]
+position = Vector2(1809, 28)
+shape = SubResource("RectangleShape2D_3nlv3")
+
 [node name="Floor" type="Sprite2D" parent="."]
-position = Vector2(-379, 266.5)
-scale = Vector2(5, 5)
+position = Vector2(-379, 287.5)
+scale = Vector2(5, 6.35484)
 texture = ExtResource("1_bh2ed")
 
 [node name="Floor2" type="Sprite2D" parent="Floor"]
@@ -65,11 +161,10 @@ texture = ExtResource("1_bh2ed")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor/StaticBody2D"]
 position = Vector2(94.8, 0.849998)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_1qv7n")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(-473, 142)
+position = Vector2(-474, 156)
 script = ExtResource("1_42e66")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
@@ -84,15 +179,18 @@ position = Vector2(-3, -12)
 scale = Vector2(4, 4)
 shape = SubResource("CapsuleShape2D_3fcx3")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+position = Vector2(263, -93)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-666, 25)
-shape = SubResource("RectangleShape2D_7ui8w")
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D/Camera2D"]
+script = SubResource("GDScript_i4ewv")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(746, 27)
-shape = SubResource("RectangleShape2D_3nlv3")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D/Camera2D/Sprite2D"]
+position = Vector2(-461, -290)
+scale = Vector2(3.64286, 3.64286)
+sprite_frames = SubResource("SpriteFrames_4taom")
+animation = &"5"
+autoplay = "5"
 
 [node name="Platform" type="Sprite2D" parent="."]
 position = Vector2(-99, 81)
@@ -123,3 +221,15 @@ texture = ExtResource("5_v0qa2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform3/StaticBody2D"]
 shape = SubResource("RectangleShape2D_smfaj")
+
+[node name="Bridge" type="Sprite2D" parent="."]
+position = Vector2(1192, 220.75)
+scale = Vector2(3.59375, 3.79412)
+texture = ExtResource("6_fbxw5")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Bridge"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bridge/StaticBody2D"]
+position = Vector2(0, 0.815887)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_4wqqe")
