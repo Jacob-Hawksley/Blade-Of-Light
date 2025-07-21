@@ -1,7 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://bvt7cpokp8n8x"]
+[gd_scene load_steps=30 format=3 uid="uid://bvt7cpokp8n8x"]
 
-[ext_resource type="Script" path="res://character_body_2d.gd" id="1_42e66"]
+[ext_resource type="Script" uid="uid://7wqg8h2dsgqt" path="res://character_body_2d.gd" id="1_42e66"]
 [ext_resource type="Texture2D" uid="uid://dnye7xix4plop" path="res://Floor.png" id="1_bh2ed"]
+[ext_resource type="Script" uid="uid://jbyklni50tip" path="res://node_2d.gd" id="1_ta5nu"]
 [ext_resource type="Texture2D" uid="uid://dgtckvfw2o7mi" path="res://Idle-Sprite.png" id="2_hs4i7"]
 [ext_resource type="Texture2D" uid="uid://blt052cugnv2h" path="res://Moving.png" id="4_3j8yj"]
 [ext_resource type="Texture2D" uid="uid://dlhf28evjd2fb" path="res://Platform.png" id="5_v0qa2"]
@@ -13,6 +14,9 @@
 [ext_resource type="Texture2D" uid="uid://dj6ixbj20vme2" path="res://hp2.png" id="8_hp0eo"]
 [ext_resource type="Texture2D" uid="uid://bqgett8pj2p2m" path="res://hp3.png" id="9_l41mc"]
 [ext_resource type="Texture2D" uid="uid://dhbadn5ea3qkt" path="res://hp4.png" id="10_vepni"]
+[ext_resource type="Script" uid="uid://dy5qhyq0684o8" path="res://character_body_2d_2.gd" id="14_d2bti"]
+[ext_resource type="Texture2D" uid="uid://bffe3ogeo2245" path="res://Enemies/Raven.png" id="15_ta5nu"]
+[ext_resource type="Texture2D" uid="uid://grvnvcqk786u" path="res://Background/Grass-Floor.png" id="17_flf07"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7ui8w"]
 size = Vector2(302, 650)
@@ -120,8 +124,27 @@ size = Vector2(30, 17.3333)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4wqqe"]
 size = Vector2(256, 18.3682)
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_flf07"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_ta5nu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k73cj"]
+radius = 22.0
+height = 116.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_flf07"]
+size = Vector2(256.277, 74.3573)
+
 [node name="Node2D" type="Node2D"]
 position = Vector2(540, 298)
+script = ExtResource("1_ta5nu")
 
 [node name="Wall" type="Sprite2D" parent="."]
 position = Vector2(-687, 66.5)
@@ -137,7 +160,7 @@ position = Vector2(-691.5, 24.5191)
 shape = SubResource("RectangleShape2D_7ui8w")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Wall/StaticBody2D"]
-position = Vector2(1809, 28)
+position = Vector2(4978.51, -63.8014)
 shape = SubResource("RectangleShape2D_3nlv3")
 
 [node name="Floor" type="Sprite2D" parent="."]
@@ -231,5 +254,54 @@ texture = ExtResource("6_fbxw5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bridge/StaticBody2D"]
 position = Vector2(0, 0.815887)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_4wqqe")
+
+[node name="CharacterBody2D2" type="CharacterBody2D" parent="."]
+position = Vector2(101, 111)
+script = ExtResource("14_d2bti")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D2"]
+position = Vector2(0, 6)
+sprite_frames = SubResource("SpriteFrames_flf07")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D2"]
+position = Vector2(0, 19)
+shape = SubResource("CapsuleShape2D_k73cj")
+
+[node name="Grass Floors" type="Node" parent="."]
+
+[node name="Grass-floor" type="Sprite2D" parent="Grass Floors"]
+position = Vector2(2637, 599)
+scale = Vector2(3.52353, 3.52353)
+texture = ExtResource("17_flf07")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Grass Floors/Grass-floor"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Grass Floors/Grass-floor/StaticBody2D"]
+position = Vector2(0.709351, 4.82472)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_flf07")
+
+[node name="Grass-floor2" type="Sprite2D" parent="Grass Floors"]
+position = Vector2(3532.01, 599.75)
+scale = Vector2(3.52353, 3.52353)
+texture = ExtResource("17_flf07")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Grass Floors/Grass-floor2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Grass Floors/Grass-floor2/StaticBody2D"]
+position = Vector2(0.709351, 4.82472)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_flf07")
+
+[node name="Grass-floor3" type="Sprite2D" parent="Grass Floors"]
+position = Vector2(4428, 598.75)
+scale = Vector2(3.52353, 3.52353)
+texture = ExtResource("17_flf07")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Grass Floors/Grass-floor3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Grass Floors/Grass-floor3/StaticBody2D"]
+position = Vector2(0.709351, 4.82472)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_flf07")

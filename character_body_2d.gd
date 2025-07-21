@@ -1,10 +1,13 @@
 extends CharacterBody2D
 
-@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D # Or $AnimatedSprite2D if that's what you're using
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D 
 @onready var _animated_sprite = $AnimatedSprite2D
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -500.0
+
+
+
 
 
 
@@ -36,5 +39,6 @@ func _physics_process(delta: float) -> void:
 		_animated_sprite.play("run")
 	if direction == 0:
 		_animated_sprite.play("default")
+	Global.player = position
 
 	move_and_slide()
