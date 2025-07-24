@@ -240,7 +240,6 @@ frame = 5
 frame_progress = 0.631589
 centered = false
 offset = Vector2(-42, -80)
-flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(-3, -12)
@@ -373,3 +372,5 @@ texture = ExtResource("17_flf07")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Grass Floors/Grass-floor3/StaticBody2D"]
 position = Vector2(0.709351, 4.82472)
 shape = SubResource("RectangleShape2D_flf07")
+
+[connection signal="area_entered" from="Raven/Area2D" to="Raven" method="_on_area_2d_area_entered"]

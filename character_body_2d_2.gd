@@ -1,8 +1,11 @@
 extends CharacterBody2D
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D # Or $AnimatedSprite2D if that's what you're using
+@onready var ravenhp = 15
+@onready var iframe = 0
+
 
 func _process(delta: float) -> void:
-	Global.ravenhp = 5
+	pass
 
 
 const SPEED = 100
@@ -19,6 +22,17 @@ func _physics_process(delta: float) -> void:
 		sprite.flip_h = false
 	else:
 		sprite.flip_h = true
-	
+	if ravenhp <= 0:
+		queue_free()
 		
 	
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if iframe == 0:
+		iframe = 1
+		print('a')
+		ravenhp -= 1 
+		await get_tree().create_timer(0.3).timeout
+		iframe = 0
+	 
