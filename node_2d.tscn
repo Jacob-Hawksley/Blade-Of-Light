@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://bvt7cpokp8n8x"]
+[gd_scene load_steps=51 format=3 uid="uid://bvt7cpokp8n8x"]
 
 [ext_resource type="Script" uid="uid://7wqg8h2dsgqt" path="res://character_body_2d.gd" id="1_42e66"]
 [ext_resource type="Texture2D" uid="uid://dnye7xix4plop" path="res://Floor.png" id="1_bh2ed"]
@@ -19,13 +19,20 @@
 [ext_resource type="Texture2D" uid="uid://futqjnrvecnf" path="res://Slash4.png" id="10_bjha6"]
 [ext_resource type="Texture2D" uid="uid://dhbadn5ea3qkt" path="res://hp4.png" id="10_vepni"]
 [ext_resource type="Texture2D" uid="uid://dog1n8cqx5qgn" path="res://Slash5.png" id="11_gt76g"]
+[ext_resource type="Script" uid="uid://dorqab5dwt6rb" path="res://sprite2d.gd" id="11_kq1c5"]
 [ext_resource type="Script" uid="uid://dy5qhyq0684o8" path="res://character_body_2d_2.gd" id="14_d2bti"]
 [ext_resource type="Texture2D" uid="uid://bffe3ogeo2245" path="res://Enemies/Raven.png" id="15_ta5nu"]
 [ext_resource type="Texture2D" uid="uid://grvnvcqk786u" path="res://Background/Grass-Floor.png" id="17_flf07"]
 [ext_resource type="Script" uid="uid://c0v5dd78730r3" path="res://rslash.gd" id="18_2nhjh"]
 [ext_resource type="Script" uid="uid://cwo6o2t8clscj" path="res://lslash.gd" id="19_bjha6"]
+[ext_resource type="Texture2D" uid="uid://y10m8ynmps5j" path="res://Raven-spin1.png" id="21_2u7jv"]
+[ext_resource type="Texture2D" uid="uid://c52pw28qq887c" path="res://Raven-spin2.png" id="22_24dk6"]
+[ext_resource type="Texture2D" uid="uid://dkfo1dlrsyour" path="res://Raven-spin3.png" id="23_mryly"]
 [ext_resource type="Script" uid="uid://b317083l2iqcd" path="res://area_2d.gd" id="24_bjha6"]
+[ext_resource type="Script" uid="uid://cyp4d5b7c866i" path="res://animated_sprite_2d2.gd" id="24_kq1c5"]
 [ext_resource type="Script" uid="uid://dc0edk327vrl7" path="res://hp.gd" id="25_gt76g"]
+[ext_resource type="Script" uid="uid://df2lqmwirnhfs" path="res://rspin.gd" id="27_mryly"]
+[ext_resource type="Script" uid="uid://batndqe23vaob" path="res://lspin.gd" id="28_kq1c5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7ui8w"]
 size = Vector2(302, 650)
@@ -81,23 +88,6 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3fcx3"]
 radius = 4.5
 height = 21.5
-
-[sub_resource type="GDScript" id="GDScript_i4ewv"]
-script/source = "extends Sprite2D
-@onready var _AnimatedSprite2D = $AnimatedSprite2D
-@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
-
-var hp = 5
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	
-	_AnimatedSprite2D.play(str(hp))
-"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4taom"]
 animations = [{
@@ -171,6 +161,26 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("21_2u7jv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_2u7jv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_2u7jv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_24dk6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_mryly")
+}],
+"loop": false,
+"name": &"spin",
+"speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k73cj"]
@@ -182,6 +192,10 @@ bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1fr6y"]
 bg_color = Color(0, 0.678431, 0, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ornx7"]
+radius = 22.0
+height = 54.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_flf07"]
 size = Vector2(256.277, 74.3573)
@@ -238,7 +252,7 @@ shape = SubResource("CapsuleShape2D_3fcx3")
 position = Vector2(263, -93)
 
 [node name="Sprite2D" type="Sprite2D" parent="Player/Camera2D"]
-script = SubResource("GDScript_i4ewv")
+script = ExtResource("11_kq1c5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player/Camera2D/Sprite2D"]
 position = Vector2(-461, -290)
@@ -264,9 +278,12 @@ shape = SubResource("CapsuleShape2D_1fr6y")
 script = ExtResource("19_bjha6")
 
 [node name="Hurtbox" type="Area2D" parent="Player"]
+position = Vector2(0, 1)
+collision_layer = 4
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Hurtbox"]
-position = Vector2(-3, -12)
+position = Vector2(-1, -13)
 shape = SubResource("CapsuleShape2D_2hxjc")
 
 [node name="Raven" type="CharacterBody2D" parent="."]
@@ -277,6 +294,9 @@ script = ExtResource("14_d2bti")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Raven"]
 position = Vector2(0, 6)
 sprite_frames = SubResource("SpriteFrames_flf07")
+animation = &"spin"
+frame_progress = 0.96183
+script = ExtResource("24_kq1c5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Raven"]
 position = Vector2(0, 19)
@@ -302,6 +322,24 @@ max_value = 15.0
 show_percentage = false
 script = ExtResource("25_gt76g")
 metadata/_edit_use_anchors_ = true
+
+[node name="Area2D2" type="Area2D" parent="Raven"]
+collision_layer = 4
+collision_mask = 4
+
+[node name="rspin" type="CollisionShape2D" parent="Raven/Area2D2"]
+position = Vector2(27, 41)
+skew = -0.328122
+shape = SubResource("CapsuleShape2D_ornx7")
+disabled = true
+script = ExtResource("27_mryly")
+
+[node name="lspin" type="CollisionShape2D" parent="Raven/Area2D2"]
+position = Vector2(-32, 44)
+skew = 0.328122
+shape = SubResource("CapsuleShape2D_ornx7")
+disabled = true
+script = ExtResource("28_kq1c5")
 
 [node name="Terrain" type="Node" parent="."]
 
@@ -404,4 +442,8 @@ texture = ExtResource("1_bh2ed")
 position = Vector2(94.8, 0.849998)
 shape = SubResource("RectangleShape2D_1qv7n")
 
+[connection signal="area_entered" from="Player/Hurtbox" to="Raven/Area2D2/rspin" method="_on_hurtbox_area_entered"]
+[connection signal="area_entered" from="Player/Hurtbox" to="Raven/Area2D2/lspin" method="_on_hurtbox_area_entered"]
+[connection signal="animation_finished" from="Raven/AnimatedSprite2D" to="Raven/Area2D2/rspin" method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="animation_finished" from="Raven/AnimatedSprite2D" to="Raven/Area2D2/lspin" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="Raven/Area2D" to="Raven" method="_on_area_2d_area_entered"]

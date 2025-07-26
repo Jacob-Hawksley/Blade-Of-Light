@@ -58,5 +58,7 @@ func _physics_process(delta: float) -> void:
 		Global.z = 0
 		await get_tree().create_timer(0.5).timeout
 		cd = 0
+	if Global.hp == 0:
+		queue_free()
 		
 	move_and_slide()
