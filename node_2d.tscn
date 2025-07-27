@@ -1,17 +1,20 @@
-[gd_scene load_steps=51 format=3 uid="uid://bvt7cpokp8n8x"]
+[gd_scene load_steps=54 format=3 uid="uid://bvt7cpokp8n8x"]
 
 [ext_resource type="Script" uid="uid://7wqg8h2dsgqt" path="res://character_body_2d.gd" id="1_42e66"]
 [ext_resource type="Texture2D" uid="uid://dnye7xix4plop" path="res://Floor.png" id="1_bh2ed"]
 [ext_resource type="Script" uid="uid://jbyklni50tip" path="res://node_2d.gd" id="1_ta5nu"]
 [ext_resource type="Texture2D" uid="uid://dgtckvfw2o7mi" path="res://Idle-Sprite.png" id="2_hs4i7"]
 [ext_resource type="Texture2D" uid="uid://blt052cugnv2h" path="res://Moving.png" id="4_3j8yj"]
+[ext_resource type="Texture2D" uid="uid://civg34q3w3xcu" path="res://parry3.png" id="5_540hr"]
 [ext_resource type="Texture2D" uid="uid://dlhf28evjd2fb" path="res://Platform.png" id="5_v0qa2"]
+[ext_resource type="Texture2D" uid="uid://c18utp0rhos1v" path="res://parry1.png" id="6_6ip5v"]
 [ext_resource type="Texture2D" uid="uid://cscrvqtaa0kpd" path="res://hp0.png" id="6_ac1a7"]
 [ext_resource type="Texture2D" uid="uid://cb04xyd7iy1d" path="res://Bridge.png" id="6_fbxw5"]
 [ext_resource type="Texture2D" uid="uid://b3h48oftisjnf" path="res://hp5.png" id="6_wnmoj"]
 [ext_resource type="Texture2D" uid="uid://ctkpwowvyrdrb" path="res://hp1.png" id="7_c1gty"]
 [ext_resource type="Texture2D" uid="uid://blpap3hefqmal" path="res://Slash1.png" id="7_ei405"]
 [ext_resource type="Texture2D" uid="uid://dx3poqd0isotf" path="res://Brick-Wall.png" id="7_na3yk"]
+[ext_resource type="Texture2D" uid="uid://dxiycngmptuya" path="res://parry2.png" id="7_q5dlx"]
 [ext_resource type="Texture2D" uid="uid://d4a6x6t363cds" path="res://Slash2.png" id="8_e8dv2"]
 [ext_resource type="Texture2D" uid="uid://dj6ixbj20vme2" path="res://hp2.png" id="8_hp0eo"]
 [ext_resource type="Texture2D" uid="uid://b3rvegotcpqq5" path="res://Slash3.png" id="9_2nhjh"]
@@ -52,6 +55,33 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("5_540hr")
+}],
+"loop": true,
+"name": &"parryno",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_6ip5v")
+}],
+"loop": true,
+"name": &"parryready",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_q5dlx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_540hr")
+}],
+"loop": false,
+"name": &"parryyes",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("4_3j8yj")
 }],
 "loop": true,
@@ -73,14 +103,8 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("11_gt76g")
-}, {
-"duration": 1.0,
-"texture": ExtResource("11_gt76g")
-}, {
-"duration": 1.0,
-"texture": ExtResource("11_gt76g")
 }],
-"loop": true,
+"loop": false,
 "name": &"sslash",
 "speed": 14.0
 }]
@@ -238,8 +262,6 @@ script = ExtResource("1_42e66")
 position = Vector2(-9, -9)
 sprite_frames = SubResource("SpriteFrames_ma753")
 animation = &"sslash"
-frame = 5
-frame_progress = 0.631589
 centered = false
 offset = Vector2(-42, -80)
 
@@ -318,7 +340,7 @@ offset_right = 137.0
 offset_bottom = -73.0
 theme_override_styles/background = SubResource("StyleBoxFlat_gt76g")
 theme_override_styles/fill = SubResource("StyleBoxFlat_1fr6y")
-max_value = 15.0
+max_value = 25.0
 show_percentage = false
 script = ExtResource("25_gt76g")
 metadata/_edit_use_anchors_ = true
@@ -442,8 +464,12 @@ texture = ExtResource("1_bh2ed")
 position = Vector2(94.8, 0.849998)
 shape = SubResource("RectangleShape2D_1qv7n")
 
+[connection signal="animation_finished" from="Player/AnimatedSprite2D" to="Player/Area2D/Rslash" method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="animation_finished" from="Player/AnimatedSprite2D" to="Player/Area2D/Lslash" method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="area_entered" from="Player/Hurtbox" to="Player" method="_on_hurtbox_area_entered"]
 [connection signal="area_entered" from="Player/Hurtbox" to="Raven/Area2D2/rspin" method="_on_hurtbox_area_entered"]
 [connection signal="area_entered" from="Player/Hurtbox" to="Raven/Area2D2/lspin" method="_on_hurtbox_area_entered"]
 [connection signal="animation_finished" from="Raven/AnimatedSprite2D" to="Raven/Area2D2/rspin" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_finished" from="Raven/AnimatedSprite2D" to="Raven/Area2D2/lspin" method="_on_animated_sprite_2d_animation_finished"]
-[connection signal="area_entered" from="Raven/Area2D" to="Raven" method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Raven/Area2D" to="Player/Area2D/Rslash" method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Raven/Area2D" to="Player/Area2D/Lslash" method="_on_area_2d_area_entered"]

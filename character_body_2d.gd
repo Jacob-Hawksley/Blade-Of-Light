@@ -2,15 +2,17 @@ extends CharacterBody2D
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D 
 @onready var _animated_sprite = $AnimatedSprite2D
-@onready var cd = 0
+@onready var busy = 0
+@onready var hit = false
+@onready var parrycd = 0
+@onready var attackcd = 0
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -500.0
 
 func _ready() -> void:
-	Global.z = 0
 	Global.direct = 1
-	
+	Global.parry = 0
 
 
 
@@ -44,21 +46,48 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	#Running and walking
-	if direction != 0 and Global.z == 0:
+	if direction != 0 and busy == 0:
 		_animated_sprite.play("run")
-	if direction == 0 and Global.z == 0:
+	if direction == 0 and busy == 0:
 		_animated_sprite.play("default")
 	Global.player = position
 	#Attacking
-	if Input.is_key_pressed(KEY_Z) and cd == 0:
-		cd = 1
-		Global.z = 1
+	if Input.is_action_just_pressed("ui_attack") and attackcd == 0:
+		busy = 1
+		attackcd = 1
 		_animated_sprite.play("sslash")
 		await get_tree().create_timer(0.6).timeout
-		Global.z = 0
+		busy = 0
 		await get_tree().create_timer(0.5).timeout
-		cd = 0
+		attackcd = 0
+	#parrying
+	if Input.is_action_just_pressed("ui_parry") and parrycd == 0:
+		busy = 1
+		parrycd = 1
+		_animated_sprite.play("parryready")
+		Global.parry = 1
+		await get_tree().create_timer(0.3).timeout
+		if hit == true:
+			_animated_sprite.play("parryyes")
+			await get_tree().create_timer(0.1).timeout
+			parrycd = 0
+			Global.parry = 0
+			
+		elif hit == false:
+			Global.parry = 0
+			await get_tree().create_timer(1).timeout
+			parrycd = 0
+		busy = 0
+		
+		
 	if Global.hp == 0:
 		queue_free()
 		
 	move_and_slide()
+
+
+func _on_hurtbox_area_entered(area: Area2D) -> void:
+	hit = true
+	await get_tree().create_timer(0.3).timeout
+	hit = false
+	

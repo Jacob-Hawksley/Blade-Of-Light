@@ -1,8 +1,7 @@
 extends CollisionShape2D
 
 
-func _on_animated_sprite_2d_animation_changed() -> void:
-	Global.hp -= 1
+
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if Global.player == null:
