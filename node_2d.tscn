@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://bvt7cpokp8n8x"]
+[gd_scene load_steps=56 format=3 uid="uid://bvt7cpokp8n8x"]
 
 [ext_resource type="Script" uid="uid://7wqg8h2dsgqt" path="res://character_body_2d.gd" id="1_42e66"]
 [ext_resource type="Texture2D" uid="uid://dnye7xix4plop" path="res://Floor.png" id="1_bh2ed"]
@@ -33,6 +33,7 @@
 [ext_resource type="Texture2D" uid="uid://dkfo1dlrsyour" path="res://Raven-spin3.png" id="23_mryly"]
 [ext_resource type="Script" uid="uid://b317083l2iqcd" path="res://area_2d.gd" id="24_bjha6"]
 [ext_resource type="Script" uid="uid://cyp4d5b7c866i" path="res://animated_sprite_2d2.gd" id="24_kq1c5"]
+[ext_resource type="Texture2D" uid="uid://dxxds50ngf1hm" path="res://raven-down.png" id="25_6ip5v"]
 [ext_resource type="Script" uid="uid://dc0edk327vrl7" path="res://hp.gd" id="25_gt76g"]
 [ext_resource type="Script" uid="uid://df2lqmwirnhfs" path="res://rspin.gd" id="27_mryly"]
 [ext_resource type="Script" uid="uid://batndqe23vaob" path="res://lspin.gd" id="28_kq1c5"]
@@ -72,9 +73,6 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("7_q5dlx")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_540hr")
 }],
 "loop": false,
 "name": &"parryyes",
@@ -188,6 +186,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("25_6ip5v")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("21_2u7jv")
 }, {
 "duration": 1.0,
@@ -216,6 +222,9 @@ bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1fr6y"]
 bg_color = Color(0, 0.678431, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_540hr"]
+bg_color = Color(1, 0, 0.227451, 1)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ornx7"]
 radius = 22.0
@@ -261,7 +270,7 @@ script = ExtResource("1_42e66")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
 position = Vector2(-9, -9)
 sprite_frames = SubResource("SpriteFrames_ma753")
-animation = &"sslash"
+animation = &"parryyes"
 centered = false
 offset = Vector2(-42, -80)
 
@@ -316,8 +325,7 @@ script = ExtResource("14_d2bti")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Raven"]
 position = Vector2(0, 6)
 sprite_frames = SubResource("SpriteFrames_flf07")
-animation = &"spin"
-frame_progress = 0.96183
+animation = &"down"
 script = ExtResource("24_kq1c5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Raven"]
@@ -340,10 +348,18 @@ offset_right = 137.0
 offset_bottom = -73.0
 theme_override_styles/background = SubResource("StyleBoxFlat_gt76g")
 theme_override_styles/fill = SubResource("StyleBoxFlat_1fr6y")
-max_value = 25.0
+max_value = 40.0
 show_percentage = false
 script = ExtResource("25_gt76g")
 metadata/_edit_use_anchors_ = true
+
+[node name="Poise" type="ProgressBar" parent="Raven"]
+offset_left = -139.0
+offset_top = -72.0
+offset_right = 137.0
+offset_bottom = -68.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_540hr")
+show_percentage = false
 
 [node name="Area2D2" type="Area2D" parent="Raven"]
 collision_layer = 4

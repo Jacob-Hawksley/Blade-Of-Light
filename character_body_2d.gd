@@ -13,6 +13,7 @@ const JUMP_VELOCITY = -500.0
 func _ready() -> void:
 	Global.direct = 1
 	Global.parry = 0
+	Global.counter = 0
 
 
 
@@ -68,6 +69,7 @@ func _physics_process(delta: float) -> void:
 		Global.parry = 1
 		await get_tree().create_timer(0.3).timeout
 		if hit == true:
+			Global.counter = 1
 			_animated_sprite.play("parryyes")
 			await get_tree().create_timer(0.1).timeout
 			parrycd = 0
@@ -82,7 +84,9 @@ func _physics_process(delta: float) -> void:
 		
 	if Global.hp == 0:
 		queue_free()
-		
+	if Global.counter == 1:
+		await get_tree().create_timer(1.1).timeout
+		Global.counter = 0
 	move_and_slide()
 
 

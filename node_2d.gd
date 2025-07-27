@@ -6,3 +6,5 @@ var direct = null
 var raven = null
 var parry = null
 var ravenhit = null
+var counter = null
+var currentattack = null
