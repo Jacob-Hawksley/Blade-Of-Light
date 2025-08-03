@@ -353,7 +353,7 @@ disabled = true
 script = ExtResource("19_bjha6")
 
 [node name="Hurtbox" type="Area2D" parent="Player"]
-position = Vector2(0, 1)
+position = Vector2(1, 1)
 collision_layer = 4
 collision_mask = 4
 
@@ -361,32 +361,32 @@ collision_mask = 4
 position = Vector2(-1, -13)
 shape = SubResource("CapsuleShape2D_2hxjc")
 
-[node name="Enemies" type="Node" parent="."]
-
-[node name="Raven" type="CharacterBody2D" parent="Enemies"]
-position = Vector2(4249, 397)
+[node name="Raven" type="CharacterBody2D" parent="."]
+position = Vector2(3709, 99)
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("14_d2bti")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemies/Raven"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Raven"]
 position = Vector2(0, 6)
 sprite_frames = SubResource("SpriteFrames_flf07")
 animation = &"jump"
 script = ExtResource("24_kq1c5")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Raven"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Raven"]
 position = Vector2(0, 19)
 shape = SubResource("CapsuleShape2D_k73cj")
 
-[node name="Area2D" type="Area2D" parent="Enemies/Raven"]
+[node name="Area2D" type="Area2D" parent="Raven"]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("24_bjha6")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Enemies/Raven/Area2D"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Raven/Area2D"]
 position = Vector2(1, 20)
 shape = SubResource("CapsuleShape2D_k73cj")
 
-[node name="Hp" type="ProgressBar" parent="Enemies/Raven"]
+[node name="Hp" type="ProgressBar" parent="Raven"]
 offset_left = -139.0
 offset_top = -90.0
 offset_right = 137.0
@@ -398,7 +398,7 @@ show_percentage = false
 script = ExtResource("25_gt76g")
 metadata/_edit_use_anchors_ = true
 
-[node name="Poise" type="ProgressBar" parent="Enemies/Raven"]
+[node name="Poise" type="ProgressBar" parent="Raven"]
 offset_left = -139.0
 offset_top = -72.0
 offset_right = 137.0
@@ -406,23 +406,25 @@ offset_bottom = -68.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_540hr")
 show_percentage = false
 
-[node name="Area2D2" type="Area2D" parent="Enemies/Raven"]
+[node name="Area2D2" type="Area2D" parent="Raven"]
 collision_layer = 4
 collision_mask = 4
 
-[node name="rspin" type="CollisionShape2D" parent="Enemies/Raven/Area2D2"]
+[node name="rspin" type="CollisionShape2D" parent="Raven/Area2D2"]
 position = Vector2(27, 41)
 skew = -0.328122
 shape = SubResource("CapsuleShape2D_ornx7")
 disabled = true
 script = ExtResource("27_mryly")
 
-[node name="lspin" type="CollisionShape2D" parent="Enemies/Raven/Area2D2"]
+[node name="lspin" type="CollisionShape2D" parent="Raven/Area2D2"]
 position = Vector2(-32, 44)
 skew = 0.328122
 shape = SubResource("CapsuleShape2D_ornx7")
 disabled = true
 script = ExtResource("28_kq1c5")
+
+[node name="Enemies" type="Node" parent="."]
 
 [node name="Tonn" type="AnimatedSprite2D" parent="Enemies"]
 position = Vector2(1223, 471)
@@ -561,11 +563,11 @@ shape = SubResource("RectangleShape2D_sjy1l")
 [connection signal="animation_finished" from="Player/AnimatedSprite2D" to="Player/Area2D/Lslash" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="Player/Area2D" to="Enemies/Tonn" method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="Player/Hurtbox" to="Player" method="_on_hurtbox_area_entered"]
-[connection signal="area_entered" from="Player/Hurtbox" to="Enemies/Raven/Area2D2/rspin" method="_on_hurtbox_area_entered"]
-[connection signal="area_entered" from="Player/Hurtbox" to="Enemies/Raven/Area2D2/lspin" method="_on_hurtbox_area_entered"]
-[connection signal="animation_finished" from="Enemies/Raven/AnimatedSprite2D" to="Enemies/Raven/Area2D2/rspin" method="_on_animated_sprite_2d_animation_finished"]
-[connection signal="animation_finished" from="Enemies/Raven/AnimatedSprite2D" to="Enemies/Raven/Area2D2/lspin" method="_on_animated_sprite_2d_animation_finished"]
-[connection signal="area_entered" from="Enemies/Raven/Area2D" to="Player/Area2D/Rslash" method="_on_area_2d_area_entered"]
-[connection signal="area_entered" from="Enemies/Raven/Area2D" to="Player/Area2D/Lslash" method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Player/Hurtbox" to="Raven/Area2D2/rspin" method="_on_hurtbox_area_entered"]
+[connection signal="area_entered" from="Player/Hurtbox" to="Raven/Area2D2/lspin" method="_on_hurtbox_area_entered"]
+[connection signal="animation_finished" from="Raven/AnimatedSprite2D" to="Raven/Area2D2/rspin" method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="animation_finished" from="Raven/AnimatedSprite2D" to="Raven/Area2D2/lspin" method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="area_entered" from="Raven/Area2D" to="Player/Area2D/Rslash" method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Raven/Area2D" to="Player/Area2D/Lslash" method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="Terrain/Death barrier/Area2D" to="Player" method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="Terrain/Spikes/Spikecollision" to="Player" method="_on_spikecollision_area_entered"]

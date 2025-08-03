@@ -1,19 +1,33 @@
 extends CharacterBody2D
-@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D # Or $AnimatedSprite2D if that's what you're using
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D 
 @onready var ravenhp = 20
 @onready var iframe = 0
 @onready var bar: ProgressBar = $Hp
-@onready var a = 0
 @onready var cd = 0
 @onready var poisebar: ProgressBar = $Poise
 @onready var poisecd = 0
 @onready var poisetimer = 0
 @onready var poiseinterval = 0
 @onready var poisetimerdetector = 0
+@onready var move = 0
+@onready var attacking = false
 
 
-func _process(delta: float) -> void:
-	pass
+func _ready() -> void:
+	while true:
+		if cd == 0 and attacking == false and poisebar.value < 100:
+			var choice = randi() % 2
+			if choice == 0:
+				for i in range(10):
+					position.x += 5
+					await get_tree().create_timer(0.1).timeout
+				for i in range(10):
+					position.x -= 5
+					await get_tree().create_timer(0.1).timeout
+				
+				
+
+		await get_tree().create_timer(0.01).timeout
 
 
 const SPEED = 100
@@ -38,15 +52,16 @@ func _physics_process(delta: float) -> void:
 	
 	if cd == 0 and poisebar.value < 100:
 		sprite.play('default')
-	if (position.x - 200) < Global.player.x and Global.player.x < (position.x + 200) and cd == 0 and poisebar.value < 100:
-		cd = 1
+	if (position.x - 200) < Global.player.x and Global.player.x < (position.x + 200) and attacking == false and cd == 0 and poisebar.value < 100:
+		attacking = true
 		await get_tree().create_timer(randfn(2,1)).timeout
+		cd = 1
 		sprite.play('spin')
 		Global.currentattack = "spin"
 		await get_tree().create_timer(1).timeout
 		Global.currentattack = null
 		cd = 0
-		a = 0
+		attacking = false
 		
 		
 	if Global.player == null:
