@@ -8,3 +8,4 @@ var parry = null
 var ravenhit = null
 var counter = null
 var currentattack = null
+var playeraction = null

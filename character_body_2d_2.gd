@@ -1,6 +1,6 @@
 extends CharacterBody2D
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D # Or $AnimatedSprite2D if that's what you're using
-@onready var ravenhp = 40
+@onready var ravenhp = 20
 @onready var iframe = 0
 @onready var bar: ProgressBar = $Hp
 @onready var a = 0
@@ -38,43 +38,39 @@ func _physics_process(delta: float) -> void:
 	
 	if cd == 0 and poisebar.value < 100:
 		sprite.play('default')
-	if a == 1 and cd == 0 and poisebar.value < 100:
+	if (position.x - 200) < Global.player.x and Global.player.x < (position.x + 200) and cd == 0 and poisebar.value < 100:
 		cd = 1
-		await get_tree().create_timer(randfn(0,3)).timeout
+		await get_tree().create_timer(randfn(2,1)).timeout
 		sprite.play('spin')
 		Global.currentattack = "spin"
 		await get_tree().create_timer(1).timeout
 		Global.currentattack = null
 		cd = 0
 		a = 0
+		
+		
 	if Global.player == null:
 		return
-	if (position.x - 200) < Global.player.x and Global.player.x < (position.x + 200) and cd == 0:
-		await get_tree().create_timer(0.5).timeout
-		a = randi() % 5
 	if Global.ravenhit == true:
 		if iframe == 0:
 			if poisebar.value >= 100:
-				ravenhp -= 40
+				ravenhp -= 20
 			elif Global.counter == 1:
 				ravenhp -= 1
-				poisebar.value += (4*Global.hp)
+				poisebar.value += (15)
 			elif Global.counter == 0:
 				ravenhp -= 1
-				poisebar.value += (2*Global.hp)
+				poisebar.value += (8)
 			iframe = 1
 			poisetimer = 20
 			await get_tree().create_timer(0.2).timeout
 			iframe = 0
 	bar.value = ravenhp
-	print('a' + str(poiseinterval))
 	
 	if poisetimer > 0 and poiseinterval == 0:
-		print('b' + str(poiseinterval))
 		poiseinterval = 1
 		poisecd = 1
 		await get_tree().create_timer(0.1).timeout
-		print('c' + str(poiseinterval))
 		poisetimer -= 1
 		poiseinterval = 0
 		poisetimerdetector = 0
