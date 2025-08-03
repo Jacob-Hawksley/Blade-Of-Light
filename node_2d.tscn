@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://bvt7cpokp8n8x"]
+[gd_scene load_steps=70 format=3 uid="uid://bvt7cpokp8n8x"]
 
 [ext_resource type="Script" path="res://character_body_2d.gd" id="1_42e66"]
 [ext_resource type="Texture2D" uid="uid://dnye7xix4plop" path="res://Floor.png" id="1_bh2ed"]
@@ -29,10 +29,14 @@
 [ext_resource type="Script" path="res://rslash.gd" id="18_2nhjh"]
 [ext_resource type="Script" path="res://lslash.gd" id="19_bjha6"]
 [ext_resource type="Texture2D" uid="uid://y10m8ynmps5j" path="res://Raven-spin1.png" id="21_2u7jv"]
+[ext_resource type="Texture2D" uid="uid://cueanrstrnrgj" path="res://Attackhint.png" id="21_igpbv"]
 [ext_resource type="Texture2D" uid="uid://c52pw28qq887c" path="res://Raven-spin2.png" id="22_24dk6"]
+[ext_resource type="Texture2D" uid="uid://ddsg85i54ic7i" path="res://Jumphint.png" id="22_vsus8"]
+[ext_resource type="Texture2D" uid="uid://bk18txpcgjgpo" path="res://blank.png" id="23_5xluj"]
 [ext_resource type="Texture2D" uid="uid://dkfo1dlrsyour" path="res://Raven-spin3.png" id="23_mryly"]
 [ext_resource type="Script" path="res://area_2d.gd" id="24_bjha6"]
 [ext_resource type="Script" path="res://animated_sprite_2d2.gd" id="24_kq1c5"]
+[ext_resource type="Script" path="res://hints.gd" id="24_ylitj"]
 [ext_resource type="Texture2D" uid="uid://dxxds50ngf1hm" path="res://raven-down.png" id="25_6ip5v"]
 [ext_resource type="Script" path="res://hp.gd" id="25_gt76g"]
 [ext_resource type="Texture2D" uid="uid://b2eaofidshfqj" path="res://Enemies/Raven-jump.png" id="26_3rgeb"]
@@ -164,6 +168,33 @@ animations = [{
 }],
 "loop": true,
 "name": &"5",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cdndp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("21_igpbv")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22_vsus8")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("23_5xluj")
+}],
+"loop": true,
+"name": &"none",
 "speed": 5.0
 }]
 
@@ -333,6 +364,12 @@ scale = Vector2(3.64286, 3.64286)
 sprite_frames = SubResource("SpriteFrames_4taom")
 animation = &"5"
 autoplay = "5"
+
+[node name="Hints" type="AnimatedSprite2D" parent="Player/Camera2D"]
+position = Vector2(-18, -279)
+sprite_frames = SubResource("SpriteFrames_cdndp")
+animation = &"none"
+script = ExtResource("24_ylitj")
 
 [node name="Area2D" type="Area2D" parent="Player"]
 collision_layer = 2
