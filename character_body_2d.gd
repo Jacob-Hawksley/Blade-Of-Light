@@ -87,7 +87,7 @@ func _physics_process(delta: float) -> void:
 		busy = 0
 		
 		
-	if Global.hp == 0:
+	if Global.hp <= 0:
 		position.x = -500
 		position.y = 8
 		Global.hp = 5
@@ -105,8 +105,16 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	Global.hp = 0
+	Global.hp -= 1
+	position.y = 8
+	position.x = -500
+	
 
 
 
+	
+
+
+func _on_heartbox_area_entered(area: Area2D) -> void:
+	Global.hp = 5
 	

@@ -1,8 +1,8 @@
-[gd_scene load_steps=70 format=3 uid="uid://bvt7cpokp8n8x"]
+[gd_scene load_steps=74 format=3 uid="uid://bvt7cpokp8n8x"]
 
-[ext_resource type="Script" path="res://character_body_2d.gd" id="1_42e66"]
+[ext_resource type="Script" uid="uid://7wqg8h2dsgqt" path="res://character_body_2d.gd" id="1_42e66"]
 [ext_resource type="Texture2D" uid="uid://dnye7xix4plop" path="res://Floor.png" id="1_bh2ed"]
-[ext_resource type="Script" path="res://node_2d.gd" id="1_ta5nu"]
+[ext_resource type="Script" uid="uid://jbyklni50tip" path="res://node_2d.gd" id="1_ta5nu"]
 [ext_resource type="Texture2D" uid="uid://dgtckvfw2o7mi" path="res://Idle-Sprite.png" id="2_hs4i7"]
 [ext_resource type="Texture2D" uid="uid://blt052cugnv2h" path="res://Moving.png" id="4_3j8yj"]
 [ext_resource type="Texture2D" uid="uid://civg34q3w3xcu" path="res://parry3.png" id="5_540hr"]
@@ -22,30 +22,33 @@
 [ext_resource type="Texture2D" uid="uid://futqjnrvecnf" path="res://Slash4.png" id="10_bjha6"]
 [ext_resource type="Texture2D" uid="uid://dhbadn5ea3qkt" path="res://hp4.png" id="10_vepni"]
 [ext_resource type="Texture2D" uid="uid://dog1n8cqx5qgn" path="res://Slash5.png" id="11_gt76g"]
-[ext_resource type="Script" path="res://sprite2d.gd" id="11_kq1c5"]
-[ext_resource type="Script" path="res://character_body_2d_2.gd" id="14_d2bti"]
+[ext_resource type="Script" uid="uid://dorqab5dwt6rb" path="res://sprite2d.gd" id="11_kq1c5"]
+[ext_resource type="Script" uid="uid://dy5qhyq0684o8" path="res://character_body_2d_2.gd" id="14_d2bti"]
 [ext_resource type="Texture2D" uid="uid://bffe3ogeo2245" path="res://Enemies/Raven.png" id="15_ta5nu"]
 [ext_resource type="Texture2D" uid="uid://grvnvcqk786u" path="res://Background/Grass-Floor.png" id="17_flf07"]
-[ext_resource type="Script" path="res://rslash.gd" id="18_2nhjh"]
-[ext_resource type="Script" path="res://lslash.gd" id="19_bjha6"]
+[ext_resource type="Script" uid="uid://c0v5dd78730r3" path="res://rslash.gd" id="18_2nhjh"]
+[ext_resource type="Script" uid="uid://cwo6o2t8clscj" path="res://lslash.gd" id="19_bjha6"]
 [ext_resource type="Texture2D" uid="uid://y10m8ynmps5j" path="res://Raven-spin1.png" id="21_2u7jv"]
 [ext_resource type="Texture2D" uid="uid://cueanrstrnrgj" path="res://Attackhint.png" id="21_igpbv"]
 [ext_resource type="Texture2D" uid="uid://c52pw28qq887c" path="res://Raven-spin2.png" id="22_24dk6"]
 [ext_resource type="Texture2D" uid="uid://ddsg85i54ic7i" path="res://Jumphint.png" id="22_vsus8"]
 [ext_resource type="Texture2D" uid="uid://bk18txpcgjgpo" path="res://blank.png" id="23_5xluj"]
 [ext_resource type="Texture2D" uid="uid://dkfo1dlrsyour" path="res://Raven-spin3.png" id="23_mryly"]
-[ext_resource type="Script" path="res://area_2d.gd" id="24_bjha6"]
-[ext_resource type="Script" path="res://animated_sprite_2d2.gd" id="24_kq1c5"]
-[ext_resource type="Script" path="res://hints.gd" id="24_ylitj"]
+[ext_resource type="Script" uid="uid://b317083l2iqcd" path="res://area_2d.gd" id="24_bjha6"]
+[ext_resource type="Script" uid="uid://cyp4d5b7c866i" path="res://animated_sprite_2d2.gd" id="24_kq1c5"]
+[ext_resource type="Texture2D" uid="uid://d3mvgo7rduosc" path="res://Parryhint.png" id="24_xfyss"]
+[ext_resource type="Script" uid="uid://bdj0qrn66dsod" path="res://hints.gd" id="24_ylitj"]
 [ext_resource type="Texture2D" uid="uid://dxxds50ngf1hm" path="res://raven-down.png" id="25_6ip5v"]
-[ext_resource type="Script" path="res://hp.gd" id="25_gt76g"]
+[ext_resource type="Script" uid="uid://dc0edk327vrl7" path="res://hp.gd" id="25_gt76g"]
 [ext_resource type="Texture2D" uid="uid://b2eaofidshfqj" path="res://Enemies/Raven-jump.png" id="26_3rgeb"]
-[ext_resource type="Script" path="res://rspin.gd" id="27_mryly"]
-[ext_resource type="Script" path="res://lspin.gd" id="28_kq1c5"]
+[ext_resource type="Script" uid="uid://df2lqmwirnhfs" path="res://rspin.gd" id="27_mryly"]
+[ext_resource type="Script" uid="uid://batndqe23vaob" path="res://lspin.gd" id="28_kq1c5"]
 [ext_resource type="Texture2D" uid="uid://dcbqhh5lhqyq6" path="res://Enemies/Tonn Left.png" id="35_mlmnt"]
 [ext_resource type="Texture2D" uid="uid://8lhdlyjlf18m" path="res://Enemies/Tonn Right.png" id="36_mv3e0"]
-[ext_resource type="Script" path="res://tonn.gd" id="37_8buk7"]
 [ext_resource type="Texture2D" uid="uid://bccg7vpvpsctj" path="res://spikes.png" id="39_c21p0"]
+[ext_resource type="Script" uid="uid://dqktr8ffdqyn0" path="res://tonn_3.gd" id="43_qilgh"]
+[ext_resource type="Texture2D" uid="uid://upe17x0a7c3y" path="res://heart.png" id="48_qilgh"]
+[ext_resource type="Script" uid="uid://2attmnutt4g" path="res://heartbox.gd" id="49_4qosj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7ui8w"]
 size = Vector2(302, 650)
@@ -196,6 +199,14 @@ animations = [{
 "loop": true,
 "name": &"none",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("24_xfyss")
+}],
+"loop": true,
+"name": &"parry",
+"speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gt76g"]
@@ -294,7 +305,7 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w1vfq"]
-radius = 11.0
+radius = 14.2727
 height = 46.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_flf07"]
@@ -313,7 +324,10 @@ size = Vector2(64.2, 33.1)
 size = Vector2(5456, 49.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sjy1l"]
-size = Vector2(52, 15)
+size = Vector2(50.2038, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cjlbh"]
+size = Vector2(43, 41)
 
 [node name="Node2D" type="Node2D"]
 position = Vector2(540, 298)
@@ -368,21 +382,21 @@ autoplay = "5"
 [node name="Hints" type="AnimatedSprite2D" parent="Player/Camera2D"]
 position = Vector2(-18, -279)
 sprite_frames = SubResource("SpriteFrames_cdndp")
-animation = &"none"
+animation = &"parry"
 script = ExtResource("24_ylitj")
 
-[node name="Area2D" type="Area2D" parent="Player"]
+[node name="hitbox" type="Area2D" parent="Player"]
 collision_layer = 2
 collision_mask = 2
 
-[node name="Rslash" type="CollisionShape2D" parent="Player/Area2D"]
+[node name="Rslash" type="CollisionShape2D" parent="Player/hitbox"]
 position = Vector2(50, -8)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_gt76g")
 disabled = true
 script = ExtResource("18_2nhjh")
 
-[node name="Lslash" type="CollisionShape2D" parent="Player/Area2D"]
+[node name="Lslash" type="CollisionShape2D" parent="Player/hitbox"]
 position = Vector2(-28, -6)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_1fr6y")
@@ -463,16 +477,17 @@ script = ExtResource("28_kq1c5")
 
 [node name="Enemies" type="Node" parent="."]
 
-[node name="Tonn" type="AnimatedSprite2D" parent="Enemies"]
-position = Vector2(1223, 471)
+[node name="Tonn3" type="AnimatedSprite2D" parent="Enemies"]
+position = Vector2(1858, 464)
+scale = Vector2(1.34616, 1.22222)
 sprite_frames = SubResource("SpriteFrames_5o3db")
 animation = &"left"
-script = ExtResource("37_8buk7")
+script = ExtResource("43_qilgh")
 
-[node name="Area2D" type="Area2D" parent="Enemies/Tonn"]
+[node name="Area2D" type="Area2D" parent="Enemies/Tonn3"]
 collision_layer = 6
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Tonn/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Tonn3/Area2D"]
 position = Vector2(0, 7)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_w1vfq")
@@ -526,13 +541,23 @@ position = Vector2(0, 0.815887)
 shape = SubResource("RectangleShape2D_4wqqe")
 
 [node name="Platform3" type="Sprite2D" parent="Terrain"]
-position = Vector2(808, 255)
+position = Vector2(719, 389)
 scale = Vector2(3, 1.5)
 texture = ExtResource("5_v0qa2")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Terrain/Platform3"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/Platform3/StaticBody2D"]
+shape = SubResource("RectangleShape2D_smfaj")
+
+[node name="Platform5" type="Sprite2D" parent="Terrain"]
+position = Vector2(2039, 366)
+scale = Vector2(3, 1.5)
+texture = ExtResource("5_v0qa2")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Terrain/Platform5"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/Platform5/StaticBody2D"]
 shape = SubResource("RectangleShape2D_smfaj")
 
 [node name="Platform2" type="Sprite2D" parent="Terrain"]
@@ -546,13 +571,23 @@ texture = ExtResource("5_v0qa2")
 shape = SubResource("RectangleShape2D_smfaj")
 
 [node name="Platform" type="Sprite2D" parent="Terrain"]
-position = Vector2(612, 341)
+position = Vector2(580, 343)
 scale = Vector2(3, 1.5)
 texture = ExtResource("5_v0qa2")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Terrain/Platform"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/Platform/StaticBody2D"]
+shape = SubResource("RectangleShape2D_smfaj")
+
+[node name="Platform4" type="Sprite2D" parent="Terrain"]
+position = Vector2(1840, 342)
+scale = Vector2(3, 1.5)
+texture = ExtResource("5_v0qa2")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Terrain/Platform4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/Platform4/StaticBody2D"]
 shape = SubResource("RectangleShape2D_smfaj")
 
 [node name="Floor" type="Sprite2D" parent="Terrain"]
@@ -581,8 +616,21 @@ collision_layer = 4
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/Death barrier/Area2D"]
-position = Vector2(2431, 723.75)
+position = Vector2(2431, 739)
 shape = SubResource("RectangleShape2D_36wix")
+
+[node name="Spikes2" type="Sprite2D" parent="Terrain"]
+position = Vector2(579.5, 319)
+scale = Vector2(1.625, 1)
+texture = ExtResource("39_c21p0")
+
+[node name="Spikecollision" type="Area2D" parent="Terrain/Spikes2"]
+position = Vector2(0, 1)
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/Spikes2/Spikecollision"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_sjy1l")
 
 [node name="Spikes" type="Sprite2D" parent="Terrain"]
 position = Vector2(214, 475)
@@ -596,15 +644,45 @@ collision_layer = 4
 position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_sjy1l")
 
-[connection signal="animation_finished" from="Player/AnimatedSprite2D" to="Player/Area2D/Rslash" method="_on_animated_sprite_2d_animation_finished"]
-[connection signal="animation_finished" from="Player/AnimatedSprite2D" to="Player/Area2D/Lslash" method="_on_animated_sprite_2d_animation_finished"]
-[connection signal="area_entered" from="Player/Area2D" to="Enemies/Tonn" method="_on_area_2d_area_entered"]
+[node name="Spikes3" type="Sprite2D" parent="Terrain"]
+position = Vector2(1840.18, 366)
+rotation = 3.14159
+scale = Vector2(1.61343, 1)
+texture = ExtResource("39_c21p0")
+
+[node name="Spikecollision" type="Area2D" parent="Terrain/Spikes3"]
+position = Vector2(0, 1)
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/Spikes3/Spikecollision"]
+position = Vector2(-0.200562, 1.5)
+shape = SubResource("RectangleShape2D_sjy1l")
+
+[node name="Heart" type="Sprite2D" parent="."]
+position = Vector2(1301, -2)
+texture = ExtResource("48_qilgh")
+
+[node name="heartbox" type="Area2D" parent="Heart"]
+collision_layer = 7
+collision_mask = 7
+script = ExtResource("49_4qosj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Heart/heartbox"]
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_cjlbh")
+
+[connection signal="animation_finished" from="Player/AnimatedSprite2D" to="Player/hitbox/Rslash" method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="animation_finished" from="Player/AnimatedSprite2D" to="Player/hitbox/Lslash" method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="area_entered" from="Player/hitbox" to="Enemies/Tonn3" method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="Player/Hurtbox" to="Player" method="_on_hurtbox_area_entered"]
 [connection signal="area_entered" from="Player/Hurtbox" to="Raven/Area2D2/rspin" method="_on_hurtbox_area_entered"]
 [connection signal="area_entered" from="Player/Hurtbox" to="Raven/Area2D2/lspin" method="_on_hurtbox_area_entered"]
 [connection signal="animation_finished" from="Raven/AnimatedSprite2D" to="Raven/Area2D2/rspin" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_finished" from="Raven/AnimatedSprite2D" to="Raven/Area2D2/lspin" method="_on_animated_sprite_2d_animation_finished"]
-[connection signal="area_entered" from="Raven/Area2D" to="Player/Area2D/Rslash" method="_on_area_2d_area_entered"]
-[connection signal="area_entered" from="Raven/Area2D" to="Player/Area2D/Lslash" method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Raven/Area2D" to="Player/hitbox/Rslash" method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Raven/Area2D" to="Player/hitbox/Lslash" method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="Terrain/Death barrier/Area2D" to="Player" method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Terrain/Spikes2/Spikecollision" to="Player" method="_on_spikecollision_area_entered"]
 [connection signal="area_entered" from="Terrain/Spikes/Spikecollision" to="Player" method="_on_spikecollision_area_entered"]
+[connection signal="area_entered" from="Terrain/Spikes3/Spikecollision" to="Player" method="_on_spikecollision_area_entered"]
+[connection signal="area_entered" from="Heart/heartbox" to="Player" method="_on_heartbox_area_entered"]

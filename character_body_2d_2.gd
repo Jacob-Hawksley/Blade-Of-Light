@@ -16,16 +16,38 @@ extends CharacterBody2D
 func _ready() -> void:
 	while true:
 		if cd == 0 and attacking == false and poisebar.value < 100:
+			sprite.play('default')
 			var choice = randi() % 2
 			if choice == 0:
+				cd = 1
+				for i in range(40):
+					position.x += 2.5
+					await get_tree().create_timer(0.05).timeout
+				for i in range(40):
+					position.x -= 2.5
+					await get_tree().create_timer(0.05).timeout
+				cd = 0
+			elif choice == 1:
+				cd = 1
 				for i in range(10):
-					position.x += 5
-					await get_tree().create_timer(0.1).timeout
+					position.y -= 2.5
+					position.x += 2.5
+					await get_tree().create_timer(0.05).timeout
 				for i in range(10):
-					position.x -= 5
-					await get_tree().create_timer(0.1).timeout
-				
-				
+					position.y += 2.5
+					position.x += 2.5
+					await get_tree().create_timer(0.05).timeout
+				await get_tree().create_timer(0.3).timeout
+				for i in range(10):
+					position.y -= 2.5
+					position.x -= 2.5
+					await get_tree().create_timer(0.05).timeout
+				for i in range(10):
+					position.y += 2.5
+					position.x -= 2.5
+					await get_tree().create_timer(0.05).timeout
+				await get_tree().create_timer(0.4).timeout
+				cd = 0
 
 		await get_tree().create_timer(0.01).timeout
 
@@ -54,7 +76,7 @@ func _physics_process(delta: float) -> void:
 		sprite.play('default')
 	if (position.x - 200) < Global.player.x and Global.player.x < (position.x + 200) and attacking == false and cd == 0 and poisebar.value < 100:
 		attacking = true
-		await get_tree().create_timer(randfn(2,1)).timeout
+		await get_tree().create_timer(randfn(1,0.75)).timeout
 		cd = 1
 		sprite.play('spin')
 		Global.currentattack = "spin"
@@ -67,6 +89,7 @@ func _physics_process(delta: float) -> void:
 	if Global.player == null:
 		return
 	if Global.ravenhit == true:
+		poisetimer = 20
 		if iframe == 0:
 			if poisebar.value >= 100:
 				ravenhp -= 20
@@ -82,7 +105,7 @@ func _physics_process(delta: float) -> void:
 			iframe = 0
 	bar.value = ravenhp
 	
-	if poisetimer > 0 and poiseinterval == 0:
+	if poiseinterval == 0:
 		poiseinterval = 1
 		poisecd = 1
 		await get_tree().create_timer(0.1).timeout
@@ -90,15 +113,15 @@ func _physics_process(delta: float) -> void:
 		poiseinterval = 0
 		poisetimerdetector = 0
 	
-	if poisetimer == 0 and poisetimerdetector == 0:
+	if poisetimer <= 0 and poisetimerdetector == 0:
 		poisecd = 0
 		poisetimerdetector = 1
 
 	if poisebar.value < 100 and poisebar.value > 0 and poisecd == 0:
 		poisecd = 1
-		poisebar.value -= 1
+		poisebar.value -= 5
 		await get_tree().create_timer(0.15).timeout
-		poisecd = 0
+		
 	
 
 	if poisebar.value >= 100:

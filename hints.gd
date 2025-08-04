@@ -5,9 +5,11 @@ extends AnimatedSprite2D
 func _ready() -> void:
 	play('none')
 	play('jump')
-	await get_tree().create_timer(8).timeout
+	await get_tree().create_timer(6).timeout
 	play('attack')
-	await get_tree().create_timer(8).timeout
+	await get_tree().create_timer(6).timeout
+	play('parry')
+	await get_tree().create_timer(6).timeout
 	play('none')
 
 
