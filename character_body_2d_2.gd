@@ -101,7 +101,7 @@ func _physics_process(delta: float) -> void:
 				ravenhp -= 1
 				poisebar.value += (8)
 			iframe = 1
-			poisetimer = 35
+			poisetimer = 45
 			await get_tree().create_timer(0.2).timeout
 			iframe = 0
 	bar.value = ravenhp

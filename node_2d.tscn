@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://bvt7cpokp8n8x"]
+[gd_scene load_steps=88 format=3 uid="uid://bvt7cpokp8n8x"]
 
 [ext_resource type="Script" uid="uid://7wqg8h2dsgqt" path="res://character_body_2d.gd" id="1_42e66"]
 [ext_resource type="Texture2D" uid="uid://dnye7xix4plop" path="res://Floor.png" id="1_bh2ed"]
@@ -49,8 +49,14 @@
 [ext_resource type="Texture2D" uid="uid://8lhdlyjlf18m" path="res://Enemies/Tonn Right.png" id="36_mv3e0"]
 [ext_resource type="Texture2D" uid="uid://bccg7vpvpsctj" path="res://spikes.png" id="39_c21p0"]
 [ext_resource type="Script" uid="uid://dqktr8ffdqyn0" path="res://tonn_3.gd" id="43_qilgh"]
+[ext_resource type="Texture2D" uid="uid://c0whu2whyhsb3" path="res://Laser.png" id="45_s32dh"]
+[ext_resource type="Texture2D" uid="uid://cj4xq4vf36jpr" path="res://Laser1.png" id="46_037st"]
+[ext_resource type="Texture2D" uid="uid://xe6hs5rxbl4q" path="res://Laser2.png" id="47_6orn5"]
 [ext_resource type="Texture2D" uid="uid://upe17x0a7c3y" path="res://heart.png" id="48_qilgh"]
+[ext_resource type="Texture2D" uid="uid://ce4165f26ph8c" path="res://Laser3.png" id="48_whnp6"]
 [ext_resource type="Script" uid="uid://2attmnutt4g" path="res://heartbox.gd" id="49_4qosj"]
+[ext_resource type="Script" uid="uid://bimf8bvsmiuyw" path="res://laser.gd" id="49_22e24"]
+[ext_resource type="Texture2D" uid="uid://c5q7mn1kgbqr3" path="res://Laserbeam.png" id="50_m7xe6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7ui8w"]
 size = Vector2(302, 650)
@@ -329,6 +335,53 @@ animations = [{
 radius = 14.2727
 height = 46.0
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_wqmsq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("45_s32dh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("46_037st")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("47_6orn5")
+}],
+"loop": true,
+"name": &"middle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("48_whnp6")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fkgk1"]
+radius = 23.0217
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qgxp6"]
+size = Vector2(7.73572, 251.118)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_akb8o"]
+size = Vector2(6.00006, 242.939)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t3mf0"]
+size = Vector2(6.31018, 245.318)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_flf07"]
 size = Vector2(256.277, 74.3573)
 
@@ -520,6 +573,61 @@ collision_layer = 6
 position = Vector2(0, 7)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_w1vfq")
+
+[node name="Laser" type="AnimatedSprite2D" parent="Enemies"]
+position = Vector2(1379.11, 263.5)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_wqmsq")
+animation = &"left"
+script = ExtResource("49_22e24")
+
+[node name="Collision" type="StaticBody2D" parent="Enemies/Laser"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Laser/Collision"]
+shape = SubResource("CircleShape2D_fkgk1")
+
+[node name="LaserBeams" type="Node" parent="Enemies/Laser"]
+
+[node name="BeamLeft" type="Sprite2D" parent="Enemies/Laser/LaserBeams"]
+position = Vector2(1241.62, 387.6)
+rotation = 0.837758
+scale = Vector2(1.05777, 1.21358)
+texture = ExtResource("50_m7xe6")
+
+[node name="Left" type="Area2D" parent="Enemies/Laser/LaserBeams/BeamLeft"]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Laser/LaserBeams/BeamLeft/Left"]
+position = Vector2(-0.852661, 5.01239)
+shape = SubResource("RectangleShape2D_qgxp6")
+
+[node name="BeamMiddle" type="Sprite2D" parent="Enemies/Laser/LaserBeams"]
+position = Vector2(1379.11, 390.5)
+scale = Vector2(1, 0.765625)
+texture = ExtResource("50_m7xe6")
+
+[node name="Middle" type="Area2D" parent="Enemies/Laser/LaserBeams/BeamMiddle"]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Laser/LaserBeams/BeamMiddle/Middle"]
+position = Vector2(-0.11438, 4.57144)
+shape = SubResource("RectangleShape2D_akb8o")
+
+[node name="BeamRight" type="Sprite2D" parent="Enemies/Laser/LaserBeams"]
+position = Vector2(1515.71, 388.044)
+rotation = -0.837758
+scale = Vector2(1, 1.21651)
+texture = ExtResource("50_m7xe6")
+
+[node name="Right" type="Area2D" parent="Enemies/Laser/LaserBeams/BeamRight"]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/Laser/LaserBeams/BeamRight/Right"]
+position = Vector2(-0.218628, 1.58972)
+shape = SubResource("RectangleShape2D_t3mf0")
 
 [node name="Terrain" type="Node" parent="."]
 
