@@ -9,3 +9,4 @@ var ravenhit = null
 var counter = null
 var currentattack = null
 var playeraction = null
+var win = null

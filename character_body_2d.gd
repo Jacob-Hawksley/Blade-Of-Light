@@ -76,15 +76,17 @@ func _physics_process(delta: float) -> void:
 		if hit == true:
 			Global.counter = 1
 			_animated_sprite.play("parryyes")
-			await get_tree().create_timer(0.1).timeout
+			await get_tree().create_timer(0.01).timeout
+			busy = 0
 			parrycd = 0
 			Global.parry = 0
 			
 		elif hit == false:
 			Global.parry = 0
+			busy = 0
 			await get_tree().create_timer(1).timeout
 			parrycd = 0
-		busy = 0
+		
 		
 		
 	if Global.hp <= 0:

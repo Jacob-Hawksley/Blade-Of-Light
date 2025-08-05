@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://bvt7cpokp8n8x"]
+[gd_scene load_steps=77 format=3 uid="uid://bvt7cpokp8n8x"]
 
 [ext_resource type="Script" uid="uid://7wqg8h2dsgqt" path="res://character_body_2d.gd" id="1_42e66"]
 [ext_resource type="Texture2D" uid="uid://dnye7xix4plop" path="res://Floor.png" id="1_bh2ed"]
@@ -41,6 +41,8 @@
 [ext_resource type="Texture2D" uid="uid://dxxds50ngf1hm" path="res://raven-down.png" id="25_6ip5v"]
 [ext_resource type="Script" uid="uid://dc0edk327vrl7" path="res://hp.gd" id="25_gt76g"]
 [ext_resource type="Texture2D" uid="uid://b2eaofidshfqj" path="res://Enemies/Raven-jump.png" id="26_3rgeb"]
+[ext_resource type="Texture2D" uid="uid://bjqdfro3bionx" path="res://victory.png" id="26_4qosj"]
+[ext_resource type="Script" uid="uid://b7ceior2jilly" path="res://win.gd" id="27_cjlbh"]
 [ext_resource type="Script" uid="uid://df2lqmwirnhfs" path="res://rspin.gd" id="27_mryly"]
 [ext_resource type="Script" uid="uid://batndqe23vaob" path="res://lspin.gd" id="28_kq1c5"]
 [ext_resource type="Texture2D" uid="uid://dcbqhh5lhqyq6" path="res://Enemies/Tonn Left.png" id="35_mlmnt"]
@@ -206,6 +208,25 @@ animations = [{
 }],
 "loop": true,
 "name": &"parry",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cjlbh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("23_5xluj")
+}],
+"loop": true,
+"name": &"no",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("26_4qosj")
+}],
+"loop": true,
+"name": &"yes",
 "speed": 5.0
 }]
 
@@ -385,6 +406,14 @@ sprite_frames = SubResource("SpriteFrames_cdndp")
 animation = &"parry"
 script = ExtResource("24_ylitj")
 
+[node name="win" type="AnimatedSprite2D" parent="Player/Camera2D"]
+position = Vector2(-0.999985, -169)
+scale = Vector2(4.52206, 4.52206)
+sprite_frames = SubResource("SpriteFrames_cjlbh")
+animation = &"no"
+autoplay = "no"
+script = ExtResource("27_cjlbh")
+
 [node name="hitbox" type="Area2D" parent="Player"]
 collision_layer = 2
 collision_mask = 2
@@ -560,6 +589,19 @@ texture = ExtResource("5_v0qa2")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/Platform5/StaticBody2D"]
 shape = SubResource("RectangleShape2D_smfaj")
 
+[node name="Platform6" type="Sprite2D" parent="Terrain"]
+position = Vector2(2758, 441)
+rotation = 4.71239
+scale = Vector2(3, 1.5)
+texture = ExtResource("5_v0qa2")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Terrain/Platform6"]
+rotation = 4.71239
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/Platform6/StaticBody2D"]
+rotation = 4.71239
+shape = SubResource("RectangleShape2D_smfaj")
+
 [node name="Platform2" type="Sprite2D" parent="Terrain"]
 position = Vector2(452, 397)
 scale = Vector2(3, 1.5)
@@ -644,6 +686,22 @@ collision_layer = 4
 position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_sjy1l")
 
+[node name="Spikes4" type="Sprite2D" parent="Terrain"]
+position = Vector2(2737, 441.974)
+rotation = 4.71239
+scale = Vector2(1.53665, 1)
+texture = ExtResource("39_c21p0")
+
+[node name="Spikecollision" type="Area2D" parent="Terrain/Spikes4"]
+position = Vector2(0, 1)
+rotation = 1.5708
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Terrain/Spikes4/Spikecollision"]
+position = Vector2(0, 1.5)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_sjy1l")
+
 [node name="Spikes3" type="Sprite2D" parent="Terrain"]
 position = Vector2(1840.18, 366)
 rotation = 3.14159
@@ -684,5 +742,6 @@ shape = SubResource("RectangleShape2D_cjlbh")
 [connection signal="area_entered" from="Terrain/Death barrier/Area2D" to="Player" method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="Terrain/Spikes2/Spikecollision" to="Player" method="_on_spikecollision_area_entered"]
 [connection signal="area_entered" from="Terrain/Spikes/Spikecollision" to="Player" method="_on_spikecollision_area_entered"]
+[connection signal="area_entered" from="Terrain/Spikes4/Spikecollision" to="Player" method="_on_spikecollision_area_entered"]
 [connection signal="area_entered" from="Terrain/Spikes3/Spikecollision" to="Player" method="_on_spikecollision_area_entered"]
 [connection signal="area_entered" from="Heart/heartbox" to="Player" method="_on_heartbox_area_entered"]

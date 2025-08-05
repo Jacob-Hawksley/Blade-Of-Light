@@ -20,11 +20,11 @@ func _ready() -> void:
 			var choice = randi() % 2
 			if choice == 0:
 				cd = 1
-				for i in range(40):
-					position.x += 2.5
+				for i in range(20):
+					position.x += 5
 					await get_tree().create_timer(0.05).timeout
-				for i in range(40):
-					position.x -= 2.5
+				for i in range(20):
+					position.x -= 5
 					await get_tree().create_timer(0.05).timeout
 				cd = 0
 			elif choice == 1:
@@ -68,6 +68,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			sprite.flip_h = true
 	if ravenhp <= 0:
+		Global.win = true
 		queue_free()
 	Global.raven = int(self.position.x)
 	
@@ -100,7 +101,7 @@ func _physics_process(delta: float) -> void:
 				ravenhp -= 1
 				poisebar.value += (8)
 			iframe = 1
-			poisetimer = 20
+			poisetimer = 35
 			await get_tree().create_timer(0.2).timeout
 			iframe = 0
 	bar.value = ravenhp
