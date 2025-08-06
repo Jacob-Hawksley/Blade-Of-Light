@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c4m1f3gc05o6l"
+path="res://.godot/imported/Jacob-Hawksley - Intro beat 2025-08-06 10_25.mp3-c1edc093e72f7c01db2a41990a6e79ba.mp3str"
+
+[deps]
+
+source_file="res://Jacob-Hawksley - Intro beat 2025-08-06 10_25.mp3"
+dest_files=["res://.godot/imported/Jacob-Hawksley - Intro beat 2025-08-06 10_25.mp3-c1edc093e72f7c01db2a41990a6e79ba.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
