@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=3 uid="uid://bvt7cpokp8n8x"]
+[gd_scene load_steps=91 format=3 uid="uid://bvt7cpokp8n8x"]
 
 [ext_resource type="Script" uid="uid://7wqg8h2dsgqt" path="res://character_body_2d.gd" id="1_42e66"]
 [ext_resource type="Texture2D" uid="uid://dnye7xix4plop" path="res://Floor.png" id="1_bh2ed"]
@@ -59,6 +59,7 @@
 [ext_resource type="Texture2D" uid="uid://c5q7mn1kgbqr3" path="res://Laserbeam.png" id="50_m7xe6"]
 [ext_resource type="Texture2D" uid="uid://bt436rprro5mw" path="res://Screenshot From 2025-08-06 09-56-54.png" id="58_037st"]
 [ext_resource type="AudioStream" uid="uid://c4m1f3gc05o6l" path="res://Jacob-Hawksley - Intro beat 2025-08-06 10_25.mp3" id="59_6orn5"]
+[ext_resource type="Script" uid="uid://6gdfd5h5rwd5" path="res://audio_stream_player_2d.gd" id="60_whnp6"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4taom"]
 animations = [{
@@ -851,6 +852,7 @@ stream = ExtResource("59_6orn5")
 autoplay = true
 max_distance = 10000.0
 parameters/looping = true
+script = ExtResource("60_whnp6")
 
 [connection signal="animation_finished" from="Player/AnimatedSprite2D" to="Player/hitbox/Rslash" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_finished" from="Player/AnimatedSprite2D" to="Player/hitbox/Lslash" method="_on_animated_sprite_2d_animation_finished"]
